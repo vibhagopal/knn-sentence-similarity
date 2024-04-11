@@ -1,1 +1,1 @@
-# kin-sentence-similarity
+# knn-sentence-similarity
