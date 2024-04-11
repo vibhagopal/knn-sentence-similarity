@@ -32,3 +32,26 @@ distances, indices = knn.kneighbors(new_vec)
 print(f"Top {k} most similar sentences:")
 for i in range(k):
     print(sentences[indices[0][i]])
+     
+
+def calculate_similarity(reference_sentence, target_sentence):
+    # Create a TF-IDF vectorizer
+    vectorizer = TfidfVectorizer(stop_words='english')
+    
+    # Vectorize the reference sentence and the target sentence
+    sentence_vectors = vectorizer.fit_transform([reference_sentence, target_sentence])
+    
+    # Calculate cosine similarity between the vectors
+    similarity_score = cosine_similarity(sentence_vectors[0], sentence_vectors[1])[0][0]
+    
+    return similarity_score
+
+# Example usage:
+reference_sentence = sentences[0]
+target_sentence = new_sentence
+
+# Calculate similarity score between the reference and target sentences
+similarity_score = calculate_similarity(reference_sentence, target_sentence)
+
+
+print(f"Similarity Score: {similarity_score}")
